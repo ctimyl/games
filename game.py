@@ -9,12 +9,11 @@ class Game:
         pygame.init()
         pygame.mixer.init()
 
-        # Создаем экран до загрузки изображений
         self.screen = pygame.display.set_mode((Settings.WIDTH, Settings.HEIGHT))
         pygame.display.set_caption("Shmup!")
 
         self.clock = pygame.time.Clock()
-        self.assets = AssetManager()  # Инициализация AssetManager после установки экрана
+        self.assets = AssetManager()
         self.all_sprites = pygame.sprite.Group()
         self.mobs = pygame.sprite.Group()
         self.bullets = pygame.sprite.Group()
@@ -56,3 +55,7 @@ class Game:
         self.screen.fill(Colours.BLACK)
         self.all_sprites.draw(self.screen)
         pygame.display.flip()
+
+    def quit(self):
+        pygame.quit()
+        print("GAME OVER")

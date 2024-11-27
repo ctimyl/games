@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, player_img):
         super().__init__()
         self.image = player_img
-        self.image.set_colorkey((0, 0, 0))  # Установите черный цвет как прозрачный
+        self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.centerx = Settings.WIDTH / 2
         self.rect.bottom = Settings.HEIGHT - 10
@@ -35,7 +35,7 @@ class Mob(pygame.sprite.Sprite):
     def __init__(self, mob_img):
         super().__init__()
         self.image = mob_img
-        self.image.set_colorkey((0, 0, 0))  # Установите черный цвет как прозрачный
+        self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(Settings.WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
