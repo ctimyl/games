@@ -65,12 +65,6 @@ class Game:
         self.display_score()
         pygame.display.flip()
 
-    def quit(self):
-        self.display_game_over()
-        pygame.time.wait(4000)
-        pygame.quit()
-        print("Game Over")
-
     def display_game_over(self):
         self.screen.fill(Colours.BLACK)
         text = self.font.render("Game Over", True, Colours.RED)
@@ -82,4 +76,8 @@ class Game:
         self.screen.blit(score_text, score_rect)
         pygame.display.flip()
 
-
+    def quit(self):
+        self.display_game_over()
+        pygame.time.wait(4000)
+        pygame.quit()
+        print("Game Over")
