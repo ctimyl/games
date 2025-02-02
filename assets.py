@@ -21,7 +21,7 @@ class AssetManager:
 
         # Используем resource_path для получения правильного пути
         self.img_folder = resource_path('img')
-        self.sound_folder = resource_path('sound')
+        self.sound_folder = resource_path('sounds')
         self.video_folder = resource_path('videos')
         self.music_folder = resource_path('music')  # Папка с музыкой
 
