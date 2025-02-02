@@ -1,0 +1,39 @@
+name: Build and package
+
+# Триггер для запуска Actions
+on:
+  push:
+    branches:
+      - main  # Эта сборка будет запускаться при пуше в main-ветку
+  pull_request:
+    branches:
+      - main  # Эта сборка будет запускаться для PR в main-ветку
+
+# Описание самой сборки
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Указываем операционную систему для выполнения сборки (можно использовать другие, например, windows-latest)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Эта команда забирает ваш код из репозитория
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Указываем нужную версию Python
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Устанавливаем зависимости из файла requirements.txt
+
+      - name: Build executable using PyInstaller
+        run: |
+          pyinstaller --onefile --windowed --add-data "img;img" --add-data "sounds;sounds" --add-data "videos;videos" --add-data "music;music" main.py
+
+      - name: Upload the executable to GitHub as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: executable
+          path: dist/your_executable_name  # Замените на имя вашего файла .exe
