@@ -1,17 +1,29 @@
 import pygame
-import os
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
 from settings import Settings, Colours
+import os
+import sys
+
+
+def resource_path(relative_path):
+    """ Получить абсолютный путь к ресурсам внутри .exe """
+    try:
+        base_path = sys._MEIPASS  # Для работы внутри .exe
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 
 class AssetManager:
     def __init__(self):
         game_folder = os.path.dirname(__file__)
-        self.img_folder = os.path.join(game_folder, 'img')
-        self.sound_folder = os.path.join(game_folder, 'sound')
-        self.video_folder = os.path.join(game_folder, 'videos')
-        self.music_folder = os.path.join(game_folder, 'music')  # Папка с музыкой
+
+        # Используем resource_path для получения правильного пути
+        self.img_folder = resource_path('img')
+        self.sound_folder = resource_path('sound')
+        self.video_folder = resource_path('videos')
+        self.music_folder = resource_path('music')  # Папка с музыкой
 
         # Путь к видеоролику
         self.video_path = os.path.join(self.video_folder, 'intro.mp4')
@@ -142,3 +154,4 @@ class AssetManager:
             screen.blit(text, text_rect)  # Отображаем текст
             pygame.display.flip()
             clock.tick(60)
+

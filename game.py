@@ -63,7 +63,7 @@ class Game:
             self.mobs.add(m)
 
         # Проверка победы
-        if self.score >= 15:
+        if self.score >= 25:
             self.game_over = True
 
     def draw(self):
